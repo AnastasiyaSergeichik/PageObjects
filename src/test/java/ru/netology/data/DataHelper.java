@@ -37,12 +37,10 @@ public class DataHelper {
     }
 
     public static TransferInfo getFirstCardNumber() {
-        val dashboard = new DashboardPage();
         return new TransferInfo("5559 0000 0000 0001", "10000");
     }
 
     public static TransferInfo getSecondCardNumber() {
-        val dashboard = new DashboardPage();
         return new TransferInfo("5559 0000 0000 0002", "10000");
     }
 

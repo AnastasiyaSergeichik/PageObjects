@@ -101,6 +101,3 @@ public class TransferTest {
         dashboardPage.displayDashboardPageMessage();
     }
 }
-
-
-

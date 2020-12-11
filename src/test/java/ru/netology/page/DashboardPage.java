@@ -10,9 +10,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     private ElementsCollection cards = $$(".list__item");
-    private final String balanceStart = "баланс: ";
-    private final String balanceFinish = " р.";
     private ElementsCollection depositButton = $$("[data-test-id='action-deposit']");
+
 
     public TransferPage firstCardDepositClick() {
         depositButton.first().click();
@@ -25,23 +24,15 @@ public class DashboardPage {
     }
 
     public int getFirstCardBalance() {
-        return getCardBalance("01");
+        val text = cards.first().text();
+        String cardBalance = text.substring(29, text.indexOf(" ", 29));
+        return Integer.parseInt(cardBalance);
     }
 
     public int getSecondCardBalance() {
-        return getCardBalance("02");
-    }
-
-    public int getCardBalance(String id) {
-        val text = cards.findBy(Condition.text(id)).text();
-        return extractBalance(text);
-    }
-
-    public int extractBalance(String text) {
-        val start = text.indexOf(balanceStart);
-        val finish = text.indexOf(balanceFinish);
-        val value = text.substring(start + balanceStart.length(), finish);
-        return Integer.parseInt(value);
+        val text = cards.last().text();
+        String cardBalance = text.substring(29, text.indexOf(" ", 29));
+        return Integer.parseInt(cardBalance);
     }
 
     public SelenideElement displayDashboardPageMessage() {
